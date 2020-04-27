@@ -18,7 +18,7 @@ pilha.push(intA)
 pilha.push(intB)
 
 //TODO: Fazer um método que recebe um Array e um elemento, retorna um Bool dizendo se o elemento se encontra no Array
-func inList<Element: Comparable>(_ array: [Element], _ element: Element) -> Bool {
+func inList<T: Comparable>(_ array: [T], _ element: T) -> Bool {
     for i in array {
         if i == element {
             return true
@@ -34,5 +34,43 @@ inList(array, elem)
 inList(array, elem2)
 
 //TODO: Extensão de Array contendo uma função que retorna a soma de todos os elementos, independente de qual o valor numérico
+extension Array where Element: Numeric {
+    func sum() -> Element {
+        var sum = Element.zero
+        
+        for element in self {
+            sum += element
+        }
+        
+        return sum
+    }
+}
+
+let arraySum = [1, 2, 3, 4, 5, 6]
+arraySum.sum()
+
 //TODO: Fazer um método que recebe 2 Arrays e retorna um Int referente a quantidade de elementos presentes em ambos os Arrays
+func containsSameElem<T: Equatable>(_ array1: [T], _ array2: [T]) -> Int {
+    
+    let output = array1.filter(array2.contains)
+    let result = output.count
+    return result
+}
+
+let array1 = [1, 2, 3]
+let array2 = [1, 5]
+containsSameElem(array1, array2)
+
     //BONUS TODO: Fazer o método acima receber N arrays
+//func containsElementsMore<T: Comparable>(arrays: [T]...) -> Int {
+//    var count = 0
+//    
+//    for element in arrays {
+//        if inList(arrays, element) {
+//            count += 1
+//        }
+//    }
+//    
+//    return count
+//}
+//containsElementsMore(arrays: array1, array2)
